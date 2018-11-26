@@ -1,0 +1,33 @@
+﻿
+<p>Type Sentece To Correct.</p>
+<form action="javascript:alert( 'success!' );">
+    <div>
+        <input type="text">
+        <input type="submit">
+    </div>
+</form>
+<span></span>
+
+<script>
+    $("form").submit(function (event) {
+        //if ($("input:first").val() === "correct") {
+        if (typeof $("input:first").val() === "string") {
+            $("span").text("...").show();
+            var myKeyVals = '{"text": "' + $("input:first").val() + '"}';
+
+            var save = $.ajax({
+                type: "POST",
+                data: JSON.stringify(myKeyVals),
+                dataType: "text",
+                contentType: "application/json",
+                url: "api/values", success: function (result) {
+                    $("span").text(result).show();
+                }
+            });
+            return;
+        }
+
+        $("span").text("Not valid!").show().fadeOut(1000);
+        event.preventDefault();
+    });
+</script>

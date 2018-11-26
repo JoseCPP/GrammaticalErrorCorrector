@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../../Content/mytemplate/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../Content/mytemplate/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../Content/mytemplate/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../Content/mytemplate/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../Content/mytemplate/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../Content/mytemplate/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../Content/mytemplate/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/mytemplate/css/main.css">
+    <!--===============================================================================================-->
+
+    <!--===============================================================================================-->
+    <script src="../../Content/mytemplate/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../Content/mytemplate/vendor/bootstrap/js/popper.js"></script>
+    <script src="../../Content/mytemplate/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../Content/mytemplate/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../Content/mytemplate/js/main.js"></script>
+    <script>
+        function myFunction() {
+            var name = $("#name").val();
+
+
+            var myKeyVals = '{"text": "' + name + '"}';
+
+            var save = $.ajax({
+                type: "POST",
+                data: JSON.stringify(myKeyVals),
+                dataType: "text",
+                contentType: "application/json",
+                url: "api/values", success: function (result) {
+                    $("p").text(result).show();
+                }
+            });
+        }
+    </script>
+
+</head>
+<body>
+    <div class="bg-contact2" style="background-image: url('../../Content/mytemplate/images/bg-01.jpg');">
+        <div class="container-contact2">
+            <div class="wrap-contact2">
+                <form id="target" class="contact2-form validate-form" action="javascript:myFunction();">
+                    <span class="contact2-form-title">
+                        Grammatical Error Corrector with Deep Learning 
+                        <h6 id="d">
+                            <br />
+                            A Master's Project For Cal Poly Pomona Computer Science by Jose Silva
+                        </h6>
+                    </span>
+                    <p id="correctedTextBody" >
+                        
+                    </p>
+
+                    <div class="wrap-input2 validate-input" data-validate="Sentence is required">
+                        <input class="input2" type="text" id="name">
+                        <span class="focus-input2" ></span>
+                    </div>
+
+                    
+
+                    <div class="container-contact2-form-btn">
+                        <div class="wrap-contact2-form-btn">
+                            <div class="contact2-form-bgbtn"></div>
+                            <button class="contact2-form-btn">
+                                Enter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
